@@ -156,42 +156,33 @@ document.addEventListener('DOMContentLoaded', () => {
         paginationContainer.style.display = 'flex';
         paginationContainer.innerHTML = '';
 
-        // Previous Arrow
-        const prevArrow = document.createElement('a');
-        prevArrow.href = '#';
-        prevArrow.className = `page-arrow ${currentPage === 1 ? 'disabled' : ''}`;
-        prevArrow.style.transform = 'rotate(180deg)';
-        prevArrow.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="#09FFF3"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
-        prevArrow.addEventListener('click', (e) => {
+        // Previous Button
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'page-btn';
+        prevBtn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>';
+        prevBtn.disabled = currentPage <= 1;
+        prevBtn.addEventListener('click', (e) => {
             e.preventDefault();
             if (currentPage > 1) { currentPage--; updatePaginatedView(); }
         });
-        paginationContainer.appendChild(prevArrow);
+        paginationContainer.appendChild(prevBtn);
 
-        // Numbered Buttons
-        for (let i = 1; i <= totalPages; i++) {
-            const pageLink = document.createElement('a');
-            pageLink.href = '#';
-            pageLink.className = `page-num ${i === currentPage ? 'active' : ''}`;
-            pageLink.textContent = i;
-            pageLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                currentPage = i;
-                updatePaginatedView();
-            });
-            paginationContainer.appendChild(pageLink);
-        }
+        // Page Info
+        const pageInfo = document.createElement('span');
+        pageInfo.className = 'page-info';
+        pageInfo.textContent = `${currentPage} / ${totalPages}`;
+        paginationContainer.appendChild(pageInfo);
 
-        // Next Arrow
-        const nextArrow = document.createElement('a');
-        nextArrow.href = '#';
-        nextArrow.className = `page-arrow ${currentPage === totalPages ? 'disabled' : ''}`;
-        nextArrow.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="#09FFF3"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
-        nextArrow.addEventListener('click', (e) => {
+        // Next Button
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'page-btn';
+        nextBtn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>';
+        nextBtn.disabled = currentPage >= totalPages;
+        nextBtn.addEventListener('click', (e) => {
             e.preventDefault();
             if (currentPage < totalPages) { currentPage++; updatePaginatedView(); }
         });
-        paginationContainer.appendChild(nextArrow);
+        paginationContainer.appendChild(nextBtn);
     }
 
     // ==========================================

@@ -241,6 +241,7 @@ Quiz (1) ──────── recorded in ── (*) Attempt
 | `GET` | `/api/quizzes/my-quizzes` | `authenticateToken` | List current user's quizzes |
 | `GET` | `/api/quizzes/:shareCode` | `authenticateToken` | Get quiz WITHOUT answers (for takers) |
 | `GET` | `/api/quizzes/:shareCode/edit` | `authenticateToken` | Get quiz WITH answers (creator only) |
+| `GET` | `/api/quizzes/:shareCode/attempts` | `authenticateToken` | View quiz taker attempts (owner only) |
 | `POST` | `/api/quizzes/create` | `authenticateToken` | Create new quiz + questions |
 | `PUT` | `/api/quizzes/:shareCode` | `authenticateToken` | Update quiz + replace questions |
 | `DELETE` | `/api/quizzes/:shareCode` | `authenticateToken` | Delete quiz + its questions |

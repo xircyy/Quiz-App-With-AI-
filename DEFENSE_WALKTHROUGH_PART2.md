@@ -68,10 +68,11 @@ If server returns 401, it auto-clears the token and redirects to /login.
 
 ### 🔵 `navbar.js` — Shared Component (270 lines)
 
-This file does THREE things:
+This file does FOUR things:
 1. **Injects the navbar HTML** into `<div id="navbar-container">` on every page
 2. **Quiz Type Selection Modal**: MCQ or Identification choice → redirects to `/create_quiz?type=`
 3. **Settings Modal**: Smart Review toggle → calls `PUT /api/user/settings`
+4. **History Button**: Routes the user to the `/quiz_history` page
 
 Key functions:
 - `hydrateNavbar()` — Fetches user data, displays username/email in navbar
@@ -111,7 +112,7 @@ The main user interface after login. Handles:
 | Delete quiz | Modal confirm → `fetchWithAuth(DELETE)` | `DELETE /api/quizzes/:shareCode` |
 | Create quiz | Quiz type modal | Redirects to `/create_quiz?type=` |
 
----
+---    
 
 ### 🔵 `create_quiz.js` — Quiz Builder (321 lines)
 
